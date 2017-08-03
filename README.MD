@@ -1,5 +1,5 @@
 # Node todo api
-##### Yai!
+##### REST API
 ## Stack
 * Node.js
 * MongoDB

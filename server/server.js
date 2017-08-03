@@ -25,6 +25,17 @@ app.post('/todos', (req, res) => {
     });
 });
 
+app.get('/todos', (req, res) => {
+  Todo.find()
+    .then((todos) => {
+      res.send({
+        todos
+      });
+    }, (err) => {
+      res.status(400).send(err);
+    });
+});
+
 app.listen(process.env.PORT || 3000, () => {
   console.log(`Server running on ${process.env.PORT}`);
 });

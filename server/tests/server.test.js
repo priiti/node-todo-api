@@ -100,9 +100,9 @@ describe('GET /todos/:id', () => {
   });
 
   it('should return 404 if todo not found', (done) => {
-    const dummyId = new ObjectId();
+    const dummyId = new ObjectId().toHexString();
     request(app)
-      .get(`/todos/${dummyId.toHexString()}`)
+      .get(`/todos/${dummyId}`)
       .expect(404)
       .end(done);
   });

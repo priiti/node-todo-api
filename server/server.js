@@ -147,6 +147,7 @@ app.post('/users/login', async (req, res) => {
     const { email, password } = req.body;
     const user = await User.findByCredentials(email, password);
     const token = await user.generateAuthToken();
+
     res.header('x-auth', token).send(user);
   } catch (error) {
     res.status(400).send();
@@ -156,6 +157,7 @@ app.post('/users/login', async (req, res) => {
 app.delete('/users/me/token', authenticate, async (req, res) => {
   try {
     await req.user.removeToken(req.token);
+    
     res.status(200).send();
   } catch (error) {
     res.status(400).send();

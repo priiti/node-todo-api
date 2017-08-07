@@ -11,11 +11,18 @@ let password = '123abc!';
 //   });
 // });
 
-const hashedPassword = '$2a$10$3ebcqhgWpp3yKITU1Qy4OeqfEziVQ9wW9P6/.tTCsX4on4pXkJfc6';
+const cryptPassword = (password) => {
+  return new Promise((resolve, reject) => {
+    const salt = bcrypt.genSalt(10);
+    resolve(bcrypt.hash(password, salt));
+  });
+};
 
-bcrypt.compare(password, hashedPassword, (error, result) => {
-  console.log(result);
-});
+cryptPassword(password).then((result) => console.log(result)).catch(e => console.log(e));
+
+// bcrypt.compare(password, hashedPassword, (error, result) => {
+//   console.log(result);
+// });
 
 // const data = {
 //   id: 10
